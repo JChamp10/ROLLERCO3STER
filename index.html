@@ -13,6 +13,9 @@
         .trivia { background: #fff; padding: 15px; margin: 20px auto; width: 80%; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); }
         img { width: 80%; border-radius: 10px; margin-top: 10px; }
         .fullscreen-button { margin-top: 10px; padding: 10px 20px; font-size: 16px; cursor: pointer; background-color: #d9534f; color: white; border: none; border-radius: 5px; }
+        .game-section { margin-top: 20px; padding: 10px; background: #fff; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); width: 85%; }
+        .game-section h2 { cursor: pointer; color: #d9534f; }
+        .game-content { display: none; }
     </style>
 </head>
 <body>
@@ -32,23 +35,38 @@
     
     <div id="hidden-site">
         <h2>Secret Iframe Zone</h2>
-        <div class="iframe-container">
-            <iframe id="game1" src="https://www.gameflare.com/embed/stickman-fighter-mega-brawl/" width="800" height="600" frameborder="0" allowfullscreen></iframe>
-            <button class="fullscreen-button" onclick="openFullscreen('game1')">Fullscreen</button>
-            
-            <iframe id="game2" src="https://vipgames.com/embed/" width="800" height="600"></iframe>
-            <button class="fullscreen-button" onclick="openFullscreen('game2')">Fullscreen</button>
-            
-            <a href="https://www.crazygames.com/game/10-minutes-till-dawn" target="_blank">
-                <button class="fullscreen-button">Play 10 Minutes Till Dawn</button>
-            </a>
-            
-            <iframe id="game3" src="https://www.gameflare.com/embed/slitherio/" frameborder="0" scrolling="no" width="900" height="635" allowfullscreen></iframe>
-            <button class="fullscreen-button" onclick="openFullscreen('game3')">Fullscreen</button>
-            
-            <h2>Play Pokémon Ruby</h2>
-            <iframe id="gba-emulator" src="https://js-dos.com/gba/?rom=/mnt/data/extracted_gba_new/Pokemon%20-%20Ruby%20Version%20(USA,%20Europe)%20(Rev%202).gba" width="800" height="600" frameborder="0" allowfullscreen></iframe>
-            <button class="fullscreen-button" onclick="openFullscreen('gba-emulator')">Fullscreen</button>
+        
+        <div class="game-section" onclick="toggleGame('game1-content')">
+            <h2>Slither.io</h2>
+            <div id="game1-content" class="game-content">
+                <iframe id="game1" src="https://www.gameflare.com/embed/slitherio/" width="800" height="600" frameborder="0" allowfullscreen></iframe>
+                <button class="fullscreen-button" onclick="openFullscreen('game1')">Fullscreen</button>
+            </div>
+        </div>
+        
+        <div class="game-section" onclick="toggleGame('game2-content')">
+            <h2>VIP Games</h2>
+            <div id="game2-content" class="game-content">
+                <iframe id="game2" src="https://vipgames.com/embed/" width="800" height="600"></iframe>
+                <button class="fullscreen-button" onclick="openFullscreen('game2')">Fullscreen</button>
+            </div>
+        </div>
+        
+        <div class="game-section" onclick="toggleGame('game3-content')">
+            <h2>10 Minutes Till Dawn</h2>
+            <div id="game3-content" class="game-content">
+                <a href="https://www.crazygames.com/game/10-minutes-till-dawn" target="_blank">
+                    <button class="fullscreen-button">Play 10 Minutes Till Dawn</button>
+                </a>
+            </div>
+        </div>
+        
+        <div class="game-section" onclick="toggleGame('game4-content')">
+            <h2>Pizza Edition</h2>
+            <div id="game4-content" class="game-content">
+                <iframe id="game4" src="https://pizzaedition.one/" width="800" height="600" frameborder="0" allowfullscreen></iframe>
+                <button class="fullscreen-button" onclick="openFullscreen('game4')">Fullscreen</button>
+            </div>
         </div>
     </div>
     
@@ -73,6 +91,11 @@
             } else if (iframe.msRequestFullscreen) { /* IE/Edge */
                 iframe.msRequestFullscreen();
             }
+        }
+        
+        function toggleGame(gameId) {
+            const content = document.getElementById(gameId);
+            content.style.display = content.style.display === "block" ? "none" : "block";
         }
     </script>
 </body>
