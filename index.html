@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rollercoaster Trivia</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; background-color: #f4f4f4; }
+        h1 { color: #d9534f; }
+        #hidden-site { display: none; margin-top: 20px; }
+        .iframe-container { display: flex; flex-direction: column; gap: 20px; align-items: center; }
+        iframe { width: 80%; height: 400px; border-radius: 10px; border: 2px solid #555; }
+        .trivia { background: #fff; padding: 15px; margin: 20px auto; width: 80%; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); }
+        img { width: 80%; border-radius: 10px; margin-top: 10px; }
+        .fullscreen-button { margin-top: 10px; padding: 10px 20px; font-size: 16px; cursor: pointer; background-color: #d9534f; color: white; border: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Rollercoaster Trivia</h1>
+    <div class="trivia">
+        <p>Did you know the fastest rollercoaster in the world is the Formula Rossa in Abu Dhabi, reaching 149 mph?</p>
+        <p>The first modern rollercoaster, the Switchback Railway, was built in 1884 at Coney Island.</p>
+        <p>Kingda Ka in Six Flags Great Adventure is the tallest rollercoaster in the world at 456 feet!</p>
+        <p>Japan’s Takabisha holds the record for the steepest drop at 121 degrees!</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Kingda_Ka_Train.jpg" alt="Kingda Ka Rollercoaster">
+    </div>
+    
+    <p>Now, solve this puzzle to unlock a secret page!</p>
+    <label for="puzzle-input">What year was the first rollercoaster built? (Enter a four-digit year)</label>
+    <input type="text" id="puzzle-input">
+    <button onclick="checkAnswer()">Submit</button>
+    
+    <div id="hidden-site">
+        <h2>Secret Iframe Zone</h2>
+        <div class="iframe-container">
+            <iframe id="game1" frameborder="0" src="https://itch.io/embed/916026" width="552" height="167"><a href="https://teamwood.itch.io/super-auto-pets">Super Auto Pets by teamwood</a></iframe>
+            <button class="fullscreen-button" onclick="openFullscreen('game1')">Fullscreen</button>
+            
+            <iframe id="game2" src="https://vipgames.com/embed/" width="800" height="600"></iframe>
+            <button class="fullscreen-button" onclick="openFullscreen('game2')">Fullscreen</button>
+        </div>
+    </div>
+    
+    <script>
+        function checkAnswer() {
+            const answer = document.getElementById("puzzle-input").value;
+            if (answer === "1884") {
+                document.getElementById("hidden-site").style.display = "block";
+            } else {
+                alert("Incorrect! Try again.");
+            }
+        }
+        
+        function openFullscreen(gameId) {
+            const iframe = document.getElementById(gameId);
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) { /* Firefox */
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) { /* IE/Edge */
+                iframe.msRequestFullscreen();
+            }
+        }
+    </script>
+</body>
+</html>
