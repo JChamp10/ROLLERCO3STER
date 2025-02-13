@@ -18,12 +18,9 @@
         .game-section { margin-top: 20px; padding: 10px; background: #fff3e0; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); width: 85%; transition: transform 0.3s ease-in-out; }
         .game-section:hover { transform: scale(1.02); }
         .game-section h2 { cursor: pointer; color: #ff5722; font-size: 1.8em; }
-        .game-content { display: none; position: relative; }
         .logo { width: 200px; margin: 20px auto; display: block; }
         .dark-mode { background-color: #121212; color: white; }
         .dark-mode .trivia, .dark-mode .game-section { background: #333; color: white; }
-        .close-button { position: absolute; top: 10px; right: 10px; background: red; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 5px; }
-        .dropdown { margin: 20px; }
     </style>
 </head>
 <body>
@@ -57,46 +54,23 @@
         </div>
         <iframe id="pizza-game" src="" width="800" height="600" frameborder="0" allowfullscreen></iframe>
         
-        <div class="game-section" onclick="toggleGame('game1-content')">
-            <h2>Slither.io</h2>
-            <div id="game1-content" class="game-content">
-                <iframe id="game1" src="https://www.gameflare.com/embed/slitherio/" width="800" height="600" frameborder="0" allowfullscreen></iframe>
-                <button class="fullscreen-button" onclick="expandGame('game1')">Fullscreen</button>
-                <button class="close-button" onclick="closeGame('game1-content')">Close</button>
-            </div>
+        <div class="game-section">
+            <h2>Pokemon Emerald</h2>
+            <iframe src="https://bobzgames.github.io/GBA/launcher.html#pokemonemerald" width="800" height="600" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
     
     <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+        }
+        
         function checkAnswer() {
             let answer = document.getElementById("puzzle-input").value;
             if (answer === "1884") {
                 document.getElementById("hidden-site").style.display = "block";
             } else {
                 alert("Incorrect! Try again.");
-            }
-        }
-
-        function expandGame(gameId) {
-            let iframe = document.getElementById(gameId);
-            iframe.style.width = "90vw";
-            iframe.style.height = "90vh";
-        }
-        
-        function closeGame(gameId) {
-            document.getElementById(gameId).style.display = "none";
-        }
-
-        function toggleDarkMode() {
-            document.body.classList.toggle("dark-mode");
-        }
-
-        function toggleGame(gameId) {
-            let gameContent = document.getElementById(gameId);
-            if (gameContent.style.display === "none" || gameContent.style.display === "") {
-                gameContent.style.display = "block";
-            } else {
-                gameContent.style.display = "none";
             }
         }
         
